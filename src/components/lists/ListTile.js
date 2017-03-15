@@ -10,8 +10,7 @@ export default {
     activeClass: {
       type: String,
       default: 'list__tile--active'
-    },
-    avatar: Boolean
+    }
   },
 
   computed: {
