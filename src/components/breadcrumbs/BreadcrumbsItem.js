@@ -1,5 +1,9 @@
+import GenerateRouteLink from '../../mixins/route-link'
+
 export default {
   name: 'breadcrumbs-item',
+
+  mixins: [GenerateRouteLink],
 
   props: {
     disabled: Boolean,
@@ -20,14 +24,14 @@ export default {
   },
 
   render (h) {
+    const { tag, data } = this.generateRouteLink()
+
+    if (tag === 'a') {
+      data.attrs.target = this.target
+    }
+
     return h('li', {}, [
-      h('a', {
-        'class': this.classes,
-        domProps: {
-          href: this.href,
-          target: this.target
-        }
-      }, this.$slots.default)
+      h(tag, data, this.$slots.default)
     ])
   }
 }
